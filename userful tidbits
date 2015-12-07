@@ -1,0 +1,15 @@
+#!/usr/bin/expect -f 
+#script to bash ssh[$login] to a host[$addr] and execute a command[$com]
+#expect statements must mirror what the cmdline is going to look like. the 2nd expect statement is matched on the cmdline prompt on .8 ubuntu machine
+
+set login "root"
+set addr "x.x.x.x"
+set pw "Sw0rdf1sh"
+set com "ls -lart"
+
+spawn ssh $login@$addr
+expect "$login@$addr's password:"
+send "$pw\r"
+expect "barney@ld-08:~$"
+send "$com\r"
+
