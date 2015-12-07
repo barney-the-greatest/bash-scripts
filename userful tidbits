@@ -1,3 +1,4 @@
+#METH0D1
 #!/usr/bin/expect -f 
 #script to bash ssh[$login] to a host[$addr] and execute a command[$com]
 #expect statements must mirror what the cmdline is going to look like. the 2nd expect statement is matched on the cmdline prompt on .8 ubuntu machine
@@ -13,8 +14,23 @@ send "$pw\r"
 expect "barney@ld-08:~$"
 send "$com\r"
 
+#METH0D2
+#!/usr/bin/expect -f
+#best method - same as method 1
 
+set login "root"
+set addr "x.x.x.x"
+set com "touch ~/barney.txt"
+set host "hostname"
+spawn ssh $login@$addr
+expect "$login@$addr's password:"
+send "$pw\r"
+expect "$login@$host ~]#"
+send -- "$com\r"
+
+#METH0D3
 #!/usr/bin/bash
 #easier 1liner to execute a command, requires you to enter the password because the echo doesnt work
 
 ssh -t root@ip "echo PASSWORD | poweroff"
+
