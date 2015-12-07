@@ -13,3 +13,8 @@ send "$pw\r"
 expect "barney@ld-08:~$"
 send "$com\r"
 
+
+#!/usr/bin/bash
+#easier 1liner to execute a command, requires you to enter the password because the echo doesnt work
+
+ssh -t root@ip "echo PASSWORD | poweroff"
